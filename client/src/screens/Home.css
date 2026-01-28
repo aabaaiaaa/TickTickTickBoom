@@ -1,0 +1,166 @@
+.home-screen {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.home-content {
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+}
+
+.logo-section {
+    margin-bottom: 3rem;
+}
+
+.logo-bomb {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 1rem;
+}
+
+.game-title {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.25rem;
+    flex-wrap: wrap;
+}
+
+.tick {
+    color: var(--accent-yellow);
+    animation: tickPulse 1s ease-in-out infinite;
+}
+
+.tick:nth-child(2) {
+    animation-delay: 0.33s;
+}
+
+.tick:nth-child(3) {
+    animation-delay: 0.66s;
+}
+
+.boom {
+    color: var(--accent-red);
+    font-size: 3rem;
+}
+
+@keyframes tickPulse {
+
+    0%,
+    100% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+}
+
+.tagline {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+.home-actions {
+    background: var(--bg-panel);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+button.large {
+    width: 100%;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    margin: 1.5rem 0;
+    color: var(--text-secondary);
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border-color);
+}
+
+.divider span {
+    padding: 0 1rem;
+}
+
+.join-section {
+    display: flex;
+    gap: 1rem;
+}
+
+.room-code-input {
+    flex: 1;
+    text-align: center;
+    font-size: 1.5rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+}
+
+.leaderboard-preview {
+    background: var(--bg-panel);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+.leaderboard-preview h3 {
+    margin-bottom: 1rem;
+    color: var(--accent-yellow);
+}
+
+.no-scores {
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+.score-list {
+    list-style: none;
+}
+
+.score-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.score-list li:last-child {
+    border-bottom: none;
+}
+
+.rank {
+    color: var(--accent-yellow);
+    font-weight: bold;
+    width: 40px;
+}
+
+.time {
+    flex: 1;
+    text-align: center;
+}
+
+.difficulty {
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    width: 80px;
+    text-align: right;
+}

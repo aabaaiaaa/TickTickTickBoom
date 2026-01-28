@@ -1,0 +1,77 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e4]:
+  - generic [ref=e5]:
+    - generic [ref=e7]:
+      - generic [ref=e8]: SERIAL
+      - generic [ref=e9]: Z6T-6Y1
+    - generic [ref=e12]: 1:43
+    - generic [ref=e15]: STRIKES
+  - generic [ref=e21]:
+    - generic [ref=e22]: Module 1 of 1
+    - generic [ref=e23]: 0 completed
+  - generic [ref=e26]:
+    - heading "Frequency Tuner" [level=2] [ref=e28]
+    - generic [ref=e30]:
+      - generic [ref=e31]:
+        - generic [ref=e32]:
+          - text: "Serial starts with:"
+          - strong [ref=e33]: Z
+        - generic [ref=e34]: FRK lit (+0.5 MHz)
+      - generic [ref=e35]:
+        - generic [ref=e36]: 10.0 MHz
+        - generic [ref=e37]: "Audio:"
+      - generic [ref=e38]:
+        - button "-1.0" [ref=e39] [cursor=pointer]
+        - button "-0.1" [ref=e40] [cursor=pointer]
+        - button "+0.1" [ref=e41] [cursor=pointer]
+        - button "+1.0" [ref=e42] [cursor=pointer]
+      - generic [ref=e43]:
+        - generic [ref=e44]:
+          - generic [ref=e45]: Mode
+          - generic [ref=e46]:
+            - button "AM" [ref=e47] [cursor=pointer]
+            - button "FM" [ref=e48] [cursor=pointer]
+        - generic [ref=e49]:
+          - generic [ref=e50]: BOOST
+          - button "OFF" [ref=e51] [cursor=pointer]
+        - generic [ref=e52]:
+          - generic [ref=e53]: FILTER
+          - button "OFF" [ref=e54] [cursor=pointer]
+      - button "📡 TRANSMIT" [active] [ref=e55] [cursor=pointer]
+      - generic [ref=e56]:
+        - heading "📋 How to solve:" [level=4] [ref=e57]
+        - list [ref=e58]:
+          - listitem [ref=e59]:
+            - text: Tell reader the
+            - strong [ref=e60]: first letter
+            - text: of serial number (Z)
+          - listitem [ref=e61]:
+            - text: Toggle
+            - strong [ref=e62]: BOOST
+            - text: on and count the
+            - strong [ref=e63]: beeps
+            - text: you hear
+          - listitem [ref=e64]:
+            - text: Try
+            - strong [ref=e65]: FILTER
+            - text: on/off - tell reader which sounds clearer
+          - listitem [ref=e66]:
+            - text: Report
+            - strong [ref=e67]: audio type
+            - text: ": morse code, musical tones, or spoken numbers"
+          - listitem [ref=e68]:
+            - text: Set
+            - strong [ref=e69]: AM/FM
+            - text: mode as reader instructs
+          - listitem [ref=e70]:
+            - text: Use
+            - strong [ref=e71]: +/- buttons
+            - text: to tune to the frequency reader calculates
+          - listitem [ref=e72]:
+            - text: Press
+            - strong [ref=e73]: TRANSMIT
+            - text: when at correct frequency
+  - generic [ref=e76]: Frequency Tuner
+```

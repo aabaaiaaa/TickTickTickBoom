@@ -1,0 +1,115 @@
+.defuser-screen {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(180deg, #1a1a2e 0%, #0f0f1a 100%);
+    overflow: hidden;
+}
+
+.loading {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+}
+
+/* Header */
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: var(--bg-panel);
+    border-bottom: 3px solid var(--border-color);
+}
+
+.header-left,
+.header-right {
+    flex: 1;
+}
+
+.header-right {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.header-center {
+    flex: 0 0 auto;
+}
+
+/* Progress Bar */
+.progress-bar {
+    padding: 0.75rem 2rem;
+    background: var(--bg-surface);
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.progress-track {
+    height: 8px;
+    background: var(--bg-dark);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-green), #00ff88);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+/* Puzzle Area */
+.puzzle-area {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    overflow: auto;
+}
+
+/* Puzzle List */
+.puzzle-list {
+    display: flex;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    background: var(--bg-panel);
+    border-top: 2px solid var(--border-color);
+    overflow-x: auto;
+}
+
+.puzzle-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--bg-surface);
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+
+.puzzle-indicator.current {
+    border-color: var(--accent-yellow);
+    background: rgba(245, 197, 24, 0.1);
+}
+
+.puzzle-indicator.completed {
+    border-color: var(--accent-green);
+    background: rgba(0, 210, 106, 0.1);
+}
+
+.puzzle-indicator .check {
+    color: var(--accent-green);
+    font-weight: bold;
+}

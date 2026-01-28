@@ -1,0 +1,21 @@
+.app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.connection-banner {
+    background: var(--accent-yellow);
+    color: var(--bg-dark);
+    padding: 0.5rem;
+    text-align: center;
+    font-weight: bold;
+}
+
+.error-banner {
+    background: var(--accent-red);
+    color: white;
+    padding: 0.5rem;
+    text-align: center;
+    font-weight: bold;
+}

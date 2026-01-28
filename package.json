@@ -1,0 +1,24 @@
+{
+    "name": "tick-tick-tick-boom",
+    "version": "1.0.0",
+    "description": "A multiplayer bomb defusal puzzle game",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+        "dev:client": "npm run dev --prefix client",
+        "dev:server": "npm run dev --prefix server",
+        "build": "npm run build --prefix client && npm run build --prefix server",
+        "test": "npm run test --prefix client",
+        "test:e2e": "npm run test --prefix e2e",
+        "test:e2e:headed": "npm run test:headed --prefix e2e",
+        "test:e2e:debug": "npm run test:debug --prefix e2e",
+        "install:all": "npm install && npm install --prefix shared && npm install --prefix server && npm install --prefix client && npm install --prefix e2e"
+    },
+    "devDependencies": {
+        "concurrently": "^9.1.0"
+    },
+    "engines": {
+        "node": ">=18.0.0"
+    }
+}
