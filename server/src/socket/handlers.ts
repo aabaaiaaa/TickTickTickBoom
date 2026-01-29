@@ -1,5 +1,6 @@
 import type { Server, Socket } from 'socket.io';
-import type { ClientToServerEvents, ServerToClientEvents, LeaderboardEntry } from '../../../shared/types.js';
+import type { ClientToServerEvents, ServerToClientEvents, LeaderboardEntry, GameState, Difficulty } from '../../../shared/types.js';
+import { DIFFICULTY_PRESETS } from '../../../shared/types.js';
 import { RoomManager } from '../rooms/RoomManager.js';
 import { validatePuzzleAction } from '../game/PuzzleValidator.js';
 
@@ -126,6 +127,9 @@ export function setupSocketHandlers(io: GameServer, roomManager: RoomManager): v
                 puzzle.isCompleted = true;
                 room.gameState.completedCount++;
 
+                // Update score for completing puzzle
+                updateScore(room.gameState, room.difficulty);
+
                 // Check for victory
                 if (room.gameState.completedCount >= room.gameState.puzzles.length) {
                     endGame(io, roomManager, room.code, true);
@@ -184,6 +188,9 @@ export function setupSocketHandlers(io: GameServer, roomManager: RoomManager): v
             // Mark puzzle as completed
             puzzle.isCompleted = true;
             room.gameState.completedCount++;
+
+            // Update score for completing puzzle (skipped puzzles still count)
+            updateScore(room.gameState, room.difficulty);
 
             // Check for victory
             if (room.gameState.completedCount >= room.gameState.puzzles.length) {
@@ -384,10 +391,64 @@ function endGame(io: GameServer, roomManager: RoomManager, roomCode: string, vic
     roomManager.clearGameTimer(roomCode);
     room.phase = victory ? 'victory' : 'defeat';
 
+    // Calculate final score on victory
+    if (victory) {
+        calculateFinalScore(room.gameState, room.difficulty);
+    }
+
     io.to(roomCode).emit('game-over', {
         victory,
         finalTime: room.gameState.timeRemaining,
         strikes: room.gameState.strikes,
+        score: room.gameState.score,
     });
+    io.to(roomCode).emit('game-state-updated', room.gameState);
     io.to(roomCode).emit('room-updated', room);
+}
+
+/**
+ * Update score when a puzzle is completed.
+ * Base score per puzzle: 100 points
+ */
+function updateScore(gameState: GameState, difficulty: Difficulty): void {
+    const baseScorePerPuzzle = 100;
+    gameState.score = gameState.completedCount * baseScorePerPuzzle;
+}
+
+/**
+ * Calculate the final score on victory.
+ * 
+ * Scoring formula:
+ * - Base: 100 points per puzzle completed
+ * - Time bonus: Up to 50% bonus based on time remaining
+ * - Strike penalty: -10% per strike
+ * - Difficulty multiplier: easy=1x, medium=1.5x, hard=2x, expert=3x
+ */
+function calculateFinalScore(gameState: GameState, difficulty: Difficulty): void {
+    const settings = DIFFICULTY_PRESETS[difficulty];
+    const totalTime = settings.timeSeconds;
+
+    // Base score: 100 points per puzzle
+    const baseScore = gameState.completedCount * 100;
+
+    // Time bonus: up to 50% of base score based on % time remaining
+    const timeRatio = gameState.timeRemaining / totalTime;
+    const timeBonus = Math.floor(baseScore * 0.5 * timeRatio);
+
+    // Strike penalty: -10% per strike
+    const strikePenalty = Math.floor(baseScore * 0.1 * gameState.strikes);
+
+    // Difficulty multiplier
+    let difficultyMultiplier = 1;
+    switch (difficulty) {
+        case 'easy': difficultyMultiplier = 1; break;
+        case 'medium': difficultyMultiplier = 1.5; break;
+        case 'hard': difficultyMultiplier = 2; break;
+        case 'expert': difficultyMultiplier = 3; break;
+        default: difficultyMultiplier = 1; break; // test modes use 1x
+    }
+
+    // Calculate final score
+    const rawScore = baseScore + timeBonus - strikePenalty;
+    gameState.score = Math.max(0, Math.floor(rawScore * difficultyMultiplier));
 }

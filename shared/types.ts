@@ -164,7 +164,7 @@ export interface ServerToClientEvents {
     'room-updated': (room: Room) => void;
     'game-state-updated': (gameState: GameState) => void;
     'puzzle-result': (data: { puzzleId: string; correct: boolean; newStrikes?: number }) => void;
-    'game-over': (data: { victory: boolean; finalTime: number; strikes: number }) => void;
+    'game-over': (data: { victory: boolean; finalTime: number; strikes: number; score: number }) => void;
     'defuser-disconnected': () => void;
     'takeover-available': (data: { previousDefuser: string }) => void;
     'leaderboard-synced': (entries: LeaderboardEntry[]) => void;

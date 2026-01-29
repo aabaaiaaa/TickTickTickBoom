@@ -45,7 +45,7 @@ export function useGameState(): UseGameStateReturn {
             // Save to localStorage
             localStorage.setItem('ticktickboom-leaderboard', JSON.stringify(entries));
         };
-        const handleGameOver = (data: { victory: boolean; finalTime: number; strikes: number }) => {
+        const handleGameOver = (data: { victory: boolean; finalTime: number; strikes: number; score: number }) => {
             console.log('Game Over:', data);
             // Add to leaderboard if victory
             if (data.victory && room && gameState) {
@@ -59,7 +59,7 @@ export function useGameState(): UseGameStateReturn {
                     playerNames: room.players.map(p => p.name),
                     defuserName: defuser?.name || 'Unknown',
                     puzzleCount: gameState.puzzles.length,
-                    score: gameState.score,
+                    score: data.score, // Use score from event, not stale state
                 };
                 const newLeaderboard = [...leaderboard, entry];
                 setLeaderboard(newLeaderboard);
